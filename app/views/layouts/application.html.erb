@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Codewar</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  </head>
+
+  <body>
+    <div class="bg-black text-white p-5">
+      <p>
+        <%= link_to(root_path) do %>
+          <h1 class="text-3xl font-bold">YeetCode</h1>
+          <p>let bad code be yeeted</p>
+        <% end %>
+      </p>
+    </div>
+
+    <p class="fixed bg-blue-300 bottom-5 right-5 text-black py-2 px-5 rounded"><%= notice %></p>
+    <p class="fixed bg-red-500 bottom-5 left-5 text-white py-2 px-5 rounded"><%= alert %></p>
+    
+    <div class="fixed top-5 right-5">
+      <% if user_signed_in? %>
+        <div class="bg-blue-500 p-2 rounded">
+          <a class="px-2 font-bold text-white">
+            <%= current_user.email %>
+          </a>
+            <%= link_to "Sign out", destroy_user_session_path, data: { "turbo-method": :delete }, class: "text-white font-light text-sm" %>
+        </div>
+      <% else %>
+        <%= link_to "Sign in", new_user_session_path, class: "text-white" %>
+      <% end %>
+    </div>
+
+    <%= yield %>
+  </body>
+
+</html>

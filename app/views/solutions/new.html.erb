@@ -1,0 +1,11 @@
+<div class="m-10">
+<h1 class="text-2xl">New solution</h1>
+
+<%= render "form", solution: @solution %>
+
+<br>
+
+<div>
+  <%= link_to "Back to problem: #{@problem.title}", problem_path(@problem) %>
+</div>
+</div>

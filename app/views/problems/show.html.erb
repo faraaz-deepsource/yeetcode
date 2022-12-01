@@ -1,0 +1,47 @@
+<div class="m-10">
+
+  <% if !@completion.nil? && user_signed_in? %>
+    <a class="text-green-500">You have already solved this problem</a>
+    <br/><br/>
+  <% end %>
+
+  <div>
+    <%= link_to "Problems", problems_path %> >
+  </div>
+
+  <%= render @problem %>
+
+  <div class="my-5 flex flex-row">
+    <% if user_signed_in? && current_user.id == @problem.user_id %>
+      <%= link_to "Edit", edit_problem_path(@problem), class: "mx-2 text-blue-500 bg-blue-100 px-5 py-2 rounded" %>
+      <%= button_to "Delete", @problem, method: :delete, class: "mx-2 text-red-500 bg-red-100 px-5 py-2 rounded" %>
+    <% end %>
+  </div>
+
+  <p class="my-5">
+    <h3 class="text-xl">Solutions</h3>
+    Total <%= pluralize(@problem.solutions.count, "solution") %>
+  </p>
+
+  <% if user_signed_in? %>
+    <br/>
+    <%= 
+      link_to "Add solution", 
+      new_problem_solution_path(@problem), 
+      class: "bg-indigo-500 text-white hover:bg-indigo-600 px-5 py-2 rounded"
+    %>
+
+    <% unless @completion.nil? %>
+      <div class="mt-5">
+        <% @solutions.each do |solution| %>
+          <%= link_to problem_solution_path(@problem, solution) do %>
+          <p class="bg-indigo-100 px-5 py-2 mt-2 rounded">
+            <%= "##{solution.id} #{time_ago_in_words(solution.created_at)} ago" %>
+            <span class="text-indigo-400">by <%= solution.user.email %></span>
+          </p>
+        <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

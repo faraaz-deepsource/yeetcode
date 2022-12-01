@@ -1,0 +1,25 @@
+<div class="m-10">
+  <h1 class="text-xl font-semibold">Problems</h1>
+
+  <%= link_to "New problem", new_problem_path, class: "text-blue-500" %>
+
+  <section class="text-gray-600 body-font">
+    <div class="container px-5 py-10 mx-auto">
+      <div class="flex flex-wrap -m-4">
+        <% @problems.each do |problem| %>
+          <%= link_to(problem) do %>
+            <div class="xl:w-1/3 md:w-1/2 p-4">
+              <div class="border border-gray-200 p-6 rounded-lg">
+                <h2 class="text-lg text-gray-900 font-medium title-font mb-2"><%= problem.title %></h2>
+                <p class="leading-relaxed text-base"><%= problem.description %></p>
+                <% if user_signed_in?%>
+                <p class="leading-relaxed text-base mt-5 text-green-500"><%= @completions.select{|cmp| cmp.problem_id == problem.id}.count > 0 ? "Completed": nil %></p>
+                <% end %>
+              </div>
+            </div>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+  </section>
+</div>

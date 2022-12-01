@@ -1,0 +1,48 @@
+<div id="<%= dom_id solution %>">
+  <p class="text-2xl">
+    <%= solution.problem.title %>
+  </p>
+
+  <p class="my-5">
+    <span class="text-5xl font-light"><%= solution.score %></span>
+    points
+  </p>
+
+<div class="flex flex-row">
+  <% if solution.status != "testing" %>
+    <% if solution.score > 0 %>
+      <%= image_tag("jai.jpg") %>
+      <%= image_tag("sanketrock.jpg") %>
+    <% elsif solution.score < 0 %>
+      <%= image_tag("bad.jpg") %>
+      <%= image_tag("jai2.jpg") %>
+    <% elsif solution.score == 10 %>
+      <%= image_tag("sanket100.jpg") %>
+      <%= image_tag("jaisus.jpg") %>
+    <% else %>
+      <%= image_tag("sanket2.png") %>
+      <%= image_tag("srijan.png") %>
+    <% end %>
+  <% end %>
+  </div>
+
+  <p>
+    <strong>Code:</strong>
+    <pre><code class="language-<%= @lang %>"><%= solution.code %></code></pre>
+  </p>
+
+<p>
+    <strong>testing status</strong>
+    <%= solution.status %>
+  </p>
+
+  <p>
+    <strong>by User:</strong>
+    <%= solution.user.email %>
+  </p>
+
+</div>
+
+<script>
+  hljs.highlightAll();
+</script>
