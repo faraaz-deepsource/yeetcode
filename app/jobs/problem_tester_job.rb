@@ -25,11 +25,11 @@ class ProblemTesterJob < ApplicationJob
     quality_score = rand(-5..5)
     case results
     when true
-      solution.score += 5 + quality_score
+      solution.score += quality_score + 5
       completion = Completion.new(user: solution.user, solution:, problem:)
       completion.save!
     else
-      solution.score -= 5 + quality_score
+      solution.score -= quality_score + 5
     end
 
     solution.tested = true
