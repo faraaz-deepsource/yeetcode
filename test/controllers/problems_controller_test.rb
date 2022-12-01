@@ -1,45 +1,45 @@
-require "test_helper"
+require 'test_helper'
 
 class ProblemsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @problem = problems(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get problems_url
     assert_response :success
   end
 
-  test "should get new" do
+  test 'should get new' do
     get new_problem_url
     assert_response :success
   end
 
-  test "should create problem" do
-    assert_difference("Problem.count") do
+  test 'should create problem' do
+    assert_difference('Problem.count') do
       post problems_url, params: { problem: { code: @problem.code, user_id: @problem.user_id } }
     end
 
     assert_redirected_to problem_url(Problem.last)
   end
 
-  test "should show problem" do
+  test 'should show problem' do
     get problem_url(@problem)
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get edit_problem_url(@problem)
     assert_response :success
   end
 
-  test "should update problem" do
+  test 'should update problem' do
     patch problem_url(@problem), params: { problem: { code: @problem.code, user_id: @problem.user_id } }
     assert_redirected_to problem_url(@problem)
   end
 
-  test "should destroy problem" do
-    assert_difference("Problem.count", -1) do
+  test 'should destroy problem' do
+    assert_difference('Problem.count', -1) do
       delete problem_url(@problem)
     end
 
