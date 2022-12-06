@@ -1,43 +1,43 @@
-require "application_system_test_case"
+require 'application_system_test_case'
 
 class ProblemsTest < ApplicationSystemTestCase
   setup do
     @problem = problems(:one)
   end
 
-  test "visiting the index" do
+  test 'visiting the index' do
     visit problems_url
-    assert_selector "h1", text: "Problems"
+    assert_selector 'h1', text: 'Problems'
   end
 
-  test "should create problem" do
+  test 'should create problem' do
     visit problems_url
-    click_on "New problem"
+    click_on 'New problem'
 
-    fill_in "Code", with: @problem.code
-    fill_in "User", with: @problem.user_id
-    click_on "Create Problem"
+    fill_in 'Code', with: @problem.code
+    fill_in 'User', with: @problem.user_id
+    click_on 'Create Problem'
 
-    assert_text "Problem was successfully created"
-    click_on "Back"
+    assert_text 'Problem was successfully created'
+    click_on 'Back'
   end
 
-  test "should update Problem" do
+  test 'should update Problem' do
     visit problem_url(@problem)
-    click_on "Edit this problem", match: :first
+    click_on 'Edit this problem', match: :first
 
-    fill_in "Code", with: @problem.code
-    fill_in "User", with: @problem.user_id
-    click_on "Update Problem"
+    fill_in 'Code', with: @problem.code
+    fill_in 'User', with: @problem.user_id
+    click_on 'Update Problem'
 
-    assert_text "Problem was successfully updated"
-    click_on "Back"
+    assert_text 'Problem was successfully updated'
+    click_on 'Back'
   end
 
-  test "should destroy Problem" do
+  test 'should destroy Problem' do
     visit problem_url(@problem)
-    click_on "Destroy this problem", match: :first
+    click_on 'Destroy this problem', match: :first
 
-    assert_text "Problem was successfully destroyed"
+    assert_text 'Problem was successfully destroyed'
   end
 end
